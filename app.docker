@@ -1,0 +1,7 @@
+FROM php:7.2-fpm
+
+RUN apt-get update
+RUN apt-get install -y libmcrypt-dev libpq-dev libcurl4-gnutls-dev
+RUN docker-php-ext-install pdo_pgsql
+
+WORKDIR /var/www
