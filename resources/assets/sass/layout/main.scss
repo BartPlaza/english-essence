@@ -11,11 +11,23 @@ html, body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
 }
 
-#container > h1 {
+.content{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.content > h1 {
     margin-bottom: 20px;
     font-size: 32px;
+}
+
+footer {
+    height: 50px;
+    background-color: #363636;
 }

@@ -17,17 +17,47 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-#container > h1 {
+.content > h1 {
   margin-bottom: 20px;
   font-size: 32px;
+}
+
+footer {
+  height: 50px;
+  background-color: #363636;
+}
+
+.navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.navbar > a {
+  text-decoration: none;
+  display: block;
+  padding: 10px;
 }
 
 .exercise > h3 {
@@ -40,6 +70,19 @@ body {
   background-color: lightgray;
   border-radius: 5px;
   border: 1px solid darkgrey;
+}
+
+.exercise:hover {
+  cursor: pointer;
+  background-color: darkgrey;
+}
+
+table {
+  max-width: 800px;
+}
+
+td.column-no {
+  width: 30px;
 }
 
 .navbar-laravel {

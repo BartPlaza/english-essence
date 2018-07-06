@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/words', 'WordsController@index');
+Route::get('/import_csv', 'WordsController@import');
+Route::post('/import_csv/validate', 'WordsController@validateFile');

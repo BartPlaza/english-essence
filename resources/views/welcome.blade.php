@@ -1,8 +1,8 @@
 @extends('layout.main')
 
 @section('content')
-
-<h1>Welcome! Select type of exercise</h1>
+<div class="welcome-wrapper">
+    <h1>Welcome! Select type of exercise</h1>
     <div class="exercises">
         <div class="exercise">
             <h3>10 random words</h3>
@@ -12,7 +12,7 @@
             </span>
         </div>
     </div>
-
+</div>
 @endsection
 
 

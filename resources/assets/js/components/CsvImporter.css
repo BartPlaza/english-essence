@@ -1,0 +1,22 @@
+.csv-file-check{
+    margin-left: 15px;
+    color: green;
+    font-size: 24px;
+}
+
+.csv-file-check .fa-exclamation-triangle {
+    color: lightcoral;
+}
+
+.import-alert {
+    background-color: lightcoral;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin: 20px;
+}
+
+.card-footer{
+    display: flex;
+    flex-direction: column;
+}
