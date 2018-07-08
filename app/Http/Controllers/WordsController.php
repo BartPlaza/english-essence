@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\CsvFile;
+use App\CsvImporter;
 use App\Word;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WordsController extends Controller
 {
@@ -23,7 +26,15 @@ class WordsController extends Controller
         $request->validate([
             'file' => 'required|file|mimes:csv,txt'
         ]);
+    }
 
-        return 'yes';
+    public function importFile(Request $request)
+    {
+        $file = $request['file'];
+        $csvImporter = new CsvImporter($file);
+        $csvImporter->save();
+        $result = $csvImporter->saveToDatabase();
+        $csvImporter->remove();
+        return $result;
     }
 }

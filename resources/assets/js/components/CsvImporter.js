@@ -8,7 +8,8 @@ class CsvImporter extends Component {
         this.state = {
             isFileOk: false,
             fileInput: React.createRef(),
-            errors: null
+            errors: null,
+            importResults: null
         }
     };
 
@@ -20,10 +21,11 @@ class CsvImporter extends Component {
                 'Content-Type': 'multipart/form-data'
             }
         })
-            .then(() => {
+            .then((response) => {
                 this.setState({
                     errors: null,
-                    isFileOk: true
+                    isFileOk: true,
+                    importResults: null
                 })
             })
             .catch((e) => {
@@ -34,14 +36,37 @@ class CsvImporter extends Component {
                 });
                 this.setState({
                     isFileOk: false,
-                    errors: errors
+                    errors: errors,
+                    importResults: null
                 });
             });
     };
 
+    importWords = (event) => {
+        event.preventDefault()
+        const formData = new FormData();
+        formData.append('file', this.state.fileInput.current.files[0]);
+        axios.post('/import_csv/import', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then((response) => {
+            this.setState({
+                importResults: response.data,
+                isFileOk: false
+            })
+        }).catch((e) => {
+            console.log(e);
+            this.setState({
+                errors: ['An error has occured!'],
+                isFileOk: false
+            })
+        });
+    };
+
     render() {
         return (
-            <form action="post" className="card" encType="multipart/form-data">
+            <form className="card" encType="multipart/form-data">
                 <div className="card-content">
                     <p className="title">Import words </p>
                     <p className="subtitle"> 1. Prepare your file </p>
@@ -49,7 +74,7 @@ class CsvImporter extends Component {
                         Your file should have 2 columns separated by ',' <br/>
                         First column is polish word and second english
                     </p>
-                    <p className="subtitle"> 2. Import .csv file </p>
+                    <p className="subtitle"> 2. Choose .csv file </p>
                     <div className="file">
                         <label className="file-label">
                             <input className="file-input" type="file" name="resume" ref={this.state.fileInput}
@@ -58,7 +83,7 @@ class CsvImporter extends Component {
                                    }}/>
                             <span className="file-cta">
                             <span className="file-icon">
-
+                                <i className="fas fa-upload"></i>
                             </span>
                             <span className="file-label">
                             Choose a file…
@@ -72,9 +97,17 @@ class CsvImporter extends Component {
                     </div>
                 </div>
                 <div className="card-footer">
+                    {this.state.isFileOk ?
+                        <button className="button is-info" id="import-button" onClick={this.importWords}>Start
+                            importing</button> : null}
                     {this.state.errors ? this.state.errors.map((error) => {
                         return <div className="import-alert" key={error}>{error}</div>
                     }) : null}
+                    {this.state.importResults ? <div className="import-results">
+                        <div><i className="fas fa-binoculars"></i> Found: {this.state.importResults['found']}</div>
+                        <div><i className="fas fa-save"></i> Saved: {this.state.importResults['saved']}</div>
+                        <div><i className="fas fa-clone"></i> Duplicated: {this.state.importResults['duplicated']}</div>
+                    </div> : null}
                 </div>
             </form>
         );

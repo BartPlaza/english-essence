@@ -18,3 +18,4 @@ Route::get('/', function () {
 Route::get('/words', 'WordsController@index');
 Route::get('/import_csv', 'WordsController@import');
 Route::post('/import_csv/validate', 'WordsController@validateFile');
+Route::post('/import_csv/import', 'WordsController@importFile');

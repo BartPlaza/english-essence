@@ -36354,10 +36354,11 @@ var CsvImporter = function (_Component) {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            }).then(function () {
+            }).then(function (response) {
                 _this.setState({
                     errors: null,
-                    isFileOk: true
+                    isFileOk: true,
+                    importResults: null
                 });
             }).catch(function (e) {
                 console.log(e.response.data.errors);
@@ -36367,7 +36368,30 @@ var CsvImporter = function (_Component) {
                 });
                 _this.setState({
                     isFileOk: false,
-                    errors: errors
+                    errors: errors,
+                    importResults: null
+                });
+            });
+        };
+
+        _this.importWords = function (event) {
+            event.preventDefault();
+            var formData = new FormData();
+            formData.append('file', _this.state.fileInput.current.files[0]);
+            axios.post('/import_csv/import', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(function (response) {
+                _this.setState({
+                    importResults: response.data,
+                    isFileOk: false
+                });
+            }).catch(function (e) {
+                console.log(e);
+                _this.setState({
+                    errors: ['An error has occured!'],
+                    isFileOk: false
                 });
             });
         };
@@ -36375,7 +36399,8 @@ var CsvImporter = function (_Component) {
         _this.state = {
             isFileOk: false,
             fileInput: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createRef(),
-            errors: null
+            errors: null,
+            importResults: null
         };
         return _this;
     }
@@ -36387,7 +36412,7 @@ var CsvImporter = function (_Component) {
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'form',
-                { action: 'post', className: 'card', encType: 'multipart/form-data' },
+                { className: 'card', encType: 'multipart/form-data' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'card-content' },
@@ -36411,7 +36436,7 @@ var CsvImporter = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'p',
                         { className: 'subtitle' },
-                        ' 2. Import .csv file '
+                        ' 2. Choose .csv file '
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
@@ -36426,7 +36451,11 @@ var CsvImporter = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'span',
                                 { className: 'file-cta' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'file-icon' }),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'span',
+                                    { className: 'file-icon' },
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-upload' })
+                                ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'span',
                                     { className: 'file-label' },
@@ -36445,13 +36474,43 @@ var CsvImporter = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'card-footer' },
+                    this.state.isFileOk ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'button',
+                        { className: 'button is-info', id: 'import-button', onClick: this.importWords },
+                        'Start importing'
+                    ) : null,
                     this.state.errors ? this.state.errors.map(function (error) {
                         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'import-alert', key: error },
                             error
                         );
-                    }) : null
+                    }) : null,
+                    this.state.importResults ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'import-results' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-binoculars' }),
+                            ' Found: ',
+                            this.state.importResults['found']
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-save' }),
+                            ' Saved: ',
+                            this.state.importResults['saved']
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-clone' }),
+                            ' Duplicated: ',
+                            this.state.importResults['duplicated']
+                        )
+                    ) : null
                 )
             );
         }
@@ -55907,7 +55966,7 @@ exports = module.exports = __webpack_require__(60)(false);
 
 
 // module
-exports.push([module.i, ".csv-file-check{\n    margin-left: 15px;\n    color: green;\n    font-size: 24px;\n}\n\n.csv-file-check .fa-exclamation-triangle {\n    color: lightcoral;\n}\n\n.import-alert {\n    background-color: lightcoral;\n    color: white;\n    padding: 10px;\n    text-align: center;\n    margin: 20px;\n}\n\n.card-footer{\n    display: flex;\n    flex-direction: column;\n}\n", ""]);
+exports.push([module.i, ".csv-file-check{\n    margin-left: 15px;\n    color: green;\n    font-size: 24px;\n}\n\n.csv-file-check .fa-exclamation-triangle {\n    color: lightcoral;\n}\n\n.import-alert {\n    background-color: lightcoral;\n    color: white;\n    padding: 10px;\n    text-align: center;\n    margin: 20px;\n}\n\n.card-footer{\n    display: flex;\n    flex-direction: column;\n}\n\n#import-button{\n    margin: 20px;\n}\n\n.import-results{\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    margin: 20px;\n}\n", ""]);
 
 // exports
 
