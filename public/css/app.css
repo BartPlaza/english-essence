@@ -82,7 +82,39 @@ table {
 }
 
 td.column-no {
-  width: 30px;
+  width: 50px;
+}
+
+ul.pagination-links {
+  margin: 0px !important;
+  list-style: none !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+ul.pagination-links > li {
+  text-decoration: none;
+  padding: 5px;
+}
+
+#words-table .panel-block {
+  background-color: #f5f5f5;
+}
+
+#words-table .panel-footer {
+  background-color: #f5f5f5;
+  padding: 5px;
+}
+
+#words-table {
+  min-width: 400px;
 }
 
 .navbar-laravel {

@@ -47,7 +47,7 @@ class CsvImporter
         $headers = ['pl', 'en'];
         if ($handle = fopen($this->fullPath(), 'r')) {
             while ($row = fgetcsv($handle, 1000, ',')) {
-                if(count($row) === 2)
+                if(count($row) === 2 && $row[0] !== '' && $row[1] !== '')
                 array_push($data, array_combine($headers, $row));
             }
         }

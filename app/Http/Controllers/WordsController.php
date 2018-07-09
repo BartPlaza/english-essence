@@ -12,7 +12,7 @@ class WordsController extends Controller
 {
     public function index()
     {
-        $words = Word::all();
+        $words = Word::simplePaginate(10);
         return view('word.index', compact('words'));
     }
 
