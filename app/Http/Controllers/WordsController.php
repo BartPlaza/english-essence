@@ -7,7 +7,6 @@ use App\CsvImporter;
 use App\Word;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
 class WordsController extends Controller
 {
     public function index()
@@ -15,19 +14,16 @@ class WordsController extends Controller
         $words = Word::simplePaginate(10);
         return view('word.index', compact('words'));
     }
-
     public function import()
     {
         return view('word.import');
     }
-
     public function validateFile(Request $request)
     {
         $request->validate([
             'file' => 'required|file|mimes:csv,txt'
         ]);
     }
-
     public function importFile(Request $request)
     {
         $file = $request['file'];
