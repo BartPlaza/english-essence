@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Illuminate\Http\UploadedFile;
 use Storage;
 
@@ -26,16 +27,26 @@ class CsvImporter
         $result = $this->convertToArray();
         $counter = 0;
         $qty = count($result);
-        if($result) {
+        $dictionary = Auth::user()->dictionary;
+        if ($result) {
             foreach ($result as $item) {
-                $exists = Word::where('pl', $item['pl'])->where('en', $item['en'])->first();
-                if (!$exists) {
-                    Word::create(['pl' => $item['pl'], 'en' => $item['en']]);
+                $word = Word::where([
+                    'body' => $item['body'],
+                    'language' => $item['language'],
+                ])->first();
+                if (!$word) {
+                    $word = Word::create([
+                        'body' => $item['body'],
+                        'language' => $item['language']
+                    ]);
+                }
+                if (!$dictionary->words->contains($word)) {
+                    $dictionary->words()->attach($word->id);
                     $counter++;
                 }
             }
         }
-        return ['found' => $qty, 'saved' => $counter, 'duplicated' => $qty-$counter];
+        return ['found' => $qty, 'saved' => $counter, 'duplicated' => $qty - $counter];
     }
 
     private function convertToArray()
@@ -44,10 +55,10 @@ class CsvImporter
             return false;
         }
         $data = [];
-        $headers = ['pl', 'en'];
+        $headers = ['body', 'language'];
         if ($handle = fopen($this->fullPath(), 'r')) {
             while ($row = fgetcsv($handle, 1000, ',')) {
-                if(count($row) === 2 && $row[0] !== '' && $row[1] !== '')
+                if ((count($row) === 2) && ($row[0] !== '') && (in_array($row[1], Word::LANGUAGES))) ;
                 array_push($data, array_combine($headers, $row));
             }
         }
@@ -56,7 +67,7 @@ class CsvImporter
 
     public function remove(): void
     {
-        Storage::disk('local')->delete('csv/'.$this->file->getFilename());
+        Storage::disk('local')->delete('csv/' . $this->file->getFilename());
     }
 
     private function fileExists(): bool

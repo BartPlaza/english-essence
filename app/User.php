@@ -26,4 +26,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function dictionary()
+    {
+      return $this->hasOne(Dictionary::class);
+    }
+
+    public function getDictionaryId(): int
+    {
+        return $this->dictionary->id;
+    }
 }

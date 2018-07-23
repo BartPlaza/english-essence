@@ -1,10 +1,28 @@
-.navbar{
-  display: flex;
-  justify-content: flex-end;
+.navbar-item {
+  //font-size: 18px;
+  //font-weight: bold;
+}
+.navbar-item.logo {
+  font-family: 'Indie Flower', cursive;
+  font-size: 22px;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
-.navbar > a{
-  text-decoration: none;
-  display: block;
-  padding: 10px;
+.navbar {
+  font-size: 20px;
+}
+
+.navbar{
+  align-items: baseline !important;
+}
+
+.navbar-item:hover {
+  color: #393939 !important;
+}
+
+@media (min-width: 1088px){
+  .navbar-item.logo {
+    border-right: 1px dashed lightgray;
+  }
 }

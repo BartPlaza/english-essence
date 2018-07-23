@@ -14,3 +14,4 @@ require('./bootstrap');
  */
 
 require('./components/CsvImporter');
+require('./Modal/Modal');

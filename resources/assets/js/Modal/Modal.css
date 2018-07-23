@@ -1,0 +1,11 @@
+.open_modal_button:hover{
+    cursor: pointer;
+    color: dimgrey;
+}
+
+.is-lightblue {
+    background-color: lightblue;
+}
+.modal-card-title {
+    margin: 0 !important;
+}

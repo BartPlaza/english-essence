@@ -1,12 +1,4 @@
-table{
-  max-width: 800px;
-}
-
-td.column-no{
-  width: 50px;
-}
-
-ul.pagination-links{
+ul.pagination-links {
   margin: 0px !important;
   list-style: none !important;
   display: flex;
@@ -14,20 +6,22 @@ ul.pagination-links{
   align-items: baseline;
 }
 
-ul.pagination-links > li{
+ul.pagination-links > li {
   text-decoration: none;
   padding: 5px;
 }
 
-#words-table .panel-block{
+#words-table .panel-block {
   background-color: #f5f5f5;
 }
 
-#words-table .panel-footer{
+#words-table .panel-footer {
   background-color: #f5f5f5;
   padding: 5px;
 }
 
-#words-table{
-  min-width: 400px;
+#words-table .panel-heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

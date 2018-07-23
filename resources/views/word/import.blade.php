@@ -1,7 +1,10 @@
 @extends ('layout.main')
 
 @section('content')
-    <div id="CsvImporter">
-
+    <div class="main">
+        @component('components.like_login_wrapper')
+            <div id="CsvImporter">
+            </div>
+        @endcomponent
     </div>
 @endsection
