@@ -35,4 +35,7 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'systran' => [
+        'key' => env('SYSTRAN_API')
+    ]
 ];

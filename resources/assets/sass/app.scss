@@ -1,17 +1,22 @@
-// Bulma
-@import "~bulma/bulma.sass";
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import '~bulma/sass/utilities/initial-variables';
 
 // Variables
 @import "variables";
 
+// Bulma
+@import "~bulma/bulma.sass";
+
 // Styles
 @import 'layout/main';
 @import 'layout/navbar';
+@import 'layout/notification';
 @import 'welcome';
 @import 'word/style';
+@import 'exercises/exercises';
+@import 'flags/flags';
+
 
 .navbar-laravel {
   background-color: #fff;

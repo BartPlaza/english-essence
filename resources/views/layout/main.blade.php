@@ -20,6 +20,11 @@
     @yield('content')
     @include('layout.footer')
 </div>
+@if(!empty($notification))
+    @component('layout.notification', ['message' => $notification['message'], 'class' => $notification['class']])
+    @endcomponent
+@endif
+
 <script type="text/javascript" src="/js/app.js"></script>
 </body>
 </html>

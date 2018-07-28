@@ -1,18 +1,19 @@
 <div class="navbar has-shadow">
     <div class="navbar-brand">
         <div class="navbar-item logo">
-            English-essence
+            <a class="navbar-item" href="/">English-essence</a>
         </div>
         <div id="navbar-burger" class="navbar-burger is-large" onclick="event.preventDefault(); document.getElementById('navbar-burger').classList.toggle('is-active');
                                                                                        document.getElementById('navbar-menu').classList.toggle('is-active')">
-           <span></span>
-           <span></span>
-           <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </div>
     <div id="navbar-menu" class="navbar-menu">
         <div class="navbar-start">
             <a class="navbar-item" href="/">Home</a>
+            <a class="navbar-item" href="/exercises">Exercises</a>
             <a class="navbar-item" href="/words">Words overview</a>
             <a class="navbar-item" href="import_csv">Import words</a>
         </div>

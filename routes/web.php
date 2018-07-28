@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/exercises', 'ExercisesController@index');
+Route::post('/exercises/translate', 'ExercisesController@fetchWord');
+Route::post('/exercises/translateAll', 'ExercisesController@fetchAllWords');
+Route::get('/exercises/10-random-words', 'ExercisesController@tenRandomWords');
 Route::get('/words', 'WordsController@index');
 Route::post('/words', 'WordsController@store');
 Route::get('/import_csv', 'WordsController@import');
