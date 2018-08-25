@@ -3,13 +3,13 @@
 use App\Dictionary;
 use App\Events\RegisteredNewUser;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class DictionaryTest extends TestCase
 {
 
-    use DatabaseTransactions;
+    use RefreshDatabase;
 
     public function testShouldCreateDictionaryForNewUser()
     {

@@ -1,0 +1,17 @@
+.rotated{
+    transform: rotate(90deg);
+}
+
+.exercise-nav{
+    cursor: pointer;
+    padding: 10px;
+}
+
+.exercise-nav:hover{
+    color: grey;
+}
+
+.fa-check-circle.exercise-nav, .fa-times-circle.exercise-nav:hover{
+    opacity: 0.6;
+}
+

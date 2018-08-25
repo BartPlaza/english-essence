@@ -1,22 +1,25 @@
 <?php
 
 use App\Word;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class WordTest extends TestCase
 {
-    use DatabaseTransactions;
+    use RefreshDatabase;
 
     public function testShouldSaveWordToDatabase()
     {
+        var_dump(DB::connection()->getDatabaseName());
         //when
-        $this->withExceptionHandling();
-        $this->post('/words', ['langue' => 'bb'])->assertSessionHas('as');
-        //Word::create(['body' => 'test', 'language' => 'pl']);
+        $this->signIn();
+        $response = $this->post('/words', ['body' => 'test','language' => 'pl', '_token' => csrf_token()]);
+        //Word::create(['body' => 'test','language' => 'pl']);
 
         //then
-        //$this->assertEquals(1, Word::all()->count());
+        $response->assertStatus(200);
+
+        //  $this->assertEquals(1, Word::all()->count());
     }
 
 }

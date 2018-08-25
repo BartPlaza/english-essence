@@ -16,4 +16,9 @@ class Word extends Model
     {
         return $this->belongsToMany(Dictionary::class, 'dictionary_word');
     }
+
+    public static function isInDictionary(User $user, string $word, string $language)
+    {
+        return $user->dictionary->words()->where(['body' => $word, 'language' => $language])->exists();
+    }
 }

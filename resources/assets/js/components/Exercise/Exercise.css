@@ -1,0 +1,32 @@
+.exercise-wrapper > div{
+    font-size: 2em;
+    text-align: center;
+}
+
+.exercise-fragment {
+    padding: 20px;
+}
+
+.exercise-answer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.exercise-add-word {
+    margin-left: 1em;
+    font-size: 0.6em;
+    cursor: pointer;
+}
+
+.exercise-add-word:hover{
+    opacity: 0.7;
+}
+
+.with-margin-move {
+    margin-left: 1.6em;
+}
+
+progress {
+    text-align: center;
+}

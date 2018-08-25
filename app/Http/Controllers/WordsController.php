@@ -35,6 +35,11 @@ class WordsController extends Controller
         $user->dictionary->words()->attach($word->id);
     }
 
+    public function exists(Request $request)
+    {
+        return json_encode(Word::isInDictionary(Auth::user(), $request->input('word'), $request->input('lang')));
+    }
+
     public function import()
     {
         return view('word.import');

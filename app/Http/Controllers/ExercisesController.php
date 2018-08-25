@@ -33,8 +33,10 @@ class ExercisesController extends Controller
     public function tenRandomWords(Request $request)
     {
         try {
-            $words = Auth::user()->dictionary->words()->where('language', $request->input('from'))->get()->random(10);
-            return view('exercises.ten_random_words', compact('words'));
+            $fromLanguage = $request->input('from');
+            $toLanguage = $request->input('to');
+            $words = Auth::user()->dictionary->words()->where('language', $fromLanguage)->get()->random(10);
+            return view('exercises.ten_random_words', compact('words','fromLanguage', 'toLanguage'));
         } catch (Exception $e) {
             $notification = ['message' => $e->getMessage(), 'class' => 'is-warning'];
             return view('exercises.index', compact('notification'));
@@ -52,9 +54,9 @@ class ExercisesController extends Controller
     public function fetchAllWords(Request $request)
     {
         $words = $request->input('words');
-        $target = 'pl';
-        $source = 'en';
-        $endpoint = 'https://api-platform.systran.net/translation/text/translate?key=' . config('services.systran.key') . '&target=' . $target . '&source=' . $source;
+        $from = $request->input('from');
+        $to = $request->input('to');
+        $endpoint = 'https://api-platform.systran.net/translation/text/translate?key=' . config('services.systran.key') . '&target=' . $to . '&source=' . $from;
         foreach ($words as $word){
             $endpoint = $endpoint . '&input=' . $word;
         }

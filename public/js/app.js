@@ -14586,9 +14586,10 @@ __webpack_require__(22);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-__webpack_require__(46);
 __webpack_require__(63);
-__webpack_require__(66);
+__webpack_require__(71);
+__webpack_require__(46);
+__webpack_require__(74);
 
 /***/ }),
 /* 22 */
@@ -56786,7 +56787,17 @@ exports.push([module.i, ".open_modal_button:hover{\n    cursor: pointer;\n    co
 
 
 /***/ }),
-/* 66 */
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 70 */,
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -56795,8 +56806,88 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Exercise_css__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader_css__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Loader_css__);
+
+
+
+
+var loader = function loader(props) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'spinner' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'bounce1' }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'bounce2' }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'bounce3' })
+    );
+};
+
+if (document.getElementById('Loader')) {
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Loader, null), document.getElementById('Loader'));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (loader);
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(73);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(6)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./Loader.css", function() {
+			var newContent = require("!!../../../../node_modules/css-loader/index.js!./Loader.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".spinner {\n    display: flex;\n    width: 70px;\n    margin: 153px auto 153px;\n    text-align: center;\n    align-items: center;\n    justify-content: center;\n}\n\n.spinner > div {\n    width: 18px;\n    height: 18px;\n    background-color: #333;\n\n    border-radius: 100%;\n    display: inline-block;\n    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;\n    animation: sk-bouncedelay 1.4s infinite ease-in-out both;\n}\n\n.spinner .bounce1 {\n    -webkit-animation-delay: -0.32s;\n    animation-delay: -0.32s;\n}\n\n.spinner .bounce2 {\n    -webkit-animation-delay: -0.16s;\n    animation-delay: -0.16s;\n}\n\n@-webkit-keyframes sk-bouncedelay {\n    0%, 80%, 100% {\n        -webkit-transform: scale(0)\n    }\n    40% {\n        -webkit-transform: scale(1.0)\n    }\n}\n\n@keyframes sk-bouncedelay {\n    0%, 80%, 100% {\n        -webkit-transform: scale(0);\n        transform: scale(0);\n    }\n    40% {\n        -webkit-transform: scale(1.0);\n        transform: scale(1.0);\n    }\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 74 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Exercise_css__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Exercise_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Exercise_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ExerciseNavigation__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Progress_Progress__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Loader_Loader__ = __webpack_require__(71);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -56804,6 +56895,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
 
 
 
@@ -56817,10 +56911,29 @@ var Exercise = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Exercise.__proto__ || Object.getPrototypeOf(Exercise)).call(this, props));
 
+        _this.areInDictionary = function (translations) {
+            translations.forEach(function (translation, index) {
+                console.log(translation);
+                axios.post('/words/exists', {
+                    word: translation.word,
+                    lang: _this.props.to
+                }).then(function (response) {
+                    translation.inDictionary = response.data;
+                    var copyTranslations = _this.state.translations;
+                    copyTranslations[index] = translation;
+                    _this.setState({
+                        translations: copyTranslations
+                    });
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            });
+        };
+
         _this.showTranslation = function () {
             _this.setState({
-                answer: _this.state.translations[_this.state.count],
-                nextWord: true
+                answer: _this.state.translations[_this.state.count]['word'],
+                beforeAnswer: false
             });
         };
 
@@ -56830,7 +56943,7 @@ var Exercise = function (_React$Component) {
                 return {
                     count: ++prevState.count,
                     answer: '...',
-                    nextWord: false
+                    beforeAnswer: true
                 };
             });
         };
@@ -56841,20 +56954,43 @@ var Exercise = function (_React$Component) {
                 return {
                     count: --prevState.count,
                     answer: '...',
-                    nextWord: false
+                    beforeAnswer: true
                 };
             });
+        };
+
+        _this.cancelExercise = function () {
+            location.replace('/exercises');
         };
 
         _this.finishExercise = function () {
             location.replace('/exercises?exercise=finished');
         };
 
+        _this.saveWord = function () {
+            axios.post('/words', {
+                body: _this.state.translations[_this.state.count]['word'],
+                language: _this.props.to
+            }).then(function (response) {
+                var copyTranslations = _this.state.translations;
+                copyTranslations[_this.state.count]['inDictionary'] = true;
+                _this.setState({
+                    translations: copyTranslations
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        };
+
+        _this.shouldRenderSaver = function () {
+            return !_this.state.beforeAnswer && !_this.state.translations[_this.state.count]['inDictionary'];
+        };
+
         _this.state = {
-            words: [],
-            translations: [],
+            words: null,
+            translations: null,
             count: 0,
-            nextWord: false,
+            beforeAnswer: true,
             answer: '...'
         };
         return _this;
@@ -56869,15 +57005,21 @@ var Exercise = function (_React$Component) {
                 return word.body;
             });
             axios.post('/exercises/translateAll', {
-                words: words
+                words: words,
+                from: this.props.from,
+                to: this.props.to
             }).then(function (response) {
-                var translations = response.data.outputs.map(function ($word) {
-                    return $word.output;
+                var translations = response.data.outputs.map(function (word) {
+                    return {
+                        word: word.output,
+                        inDictionary: true
+                    };
                 });
                 _this2.setState({
                     words: words,
                     translations: translations
                 });
+                _this2.areInDictionary(translations);
             }).catch(function (error) {
                 console.log(error);
             });
@@ -56885,35 +57027,53 @@ var Exercise = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
+
+            var answerClass = ['exercise-fragment', 'exercise-answer'];
+            if (this.shouldRenderSaver()) answerClass.push('with-margin-move');
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'box exercise-wrapper' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'exercise-question' },
-                    this.state.words[this.state.count]
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'control' },
-                    this.state.nextWord ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.Fragment,
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-arrow-alt-circle-left exercise-nav', onClick: this.prevWord }),
-                        this.state.count === this.state.words.length - 1 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-check-circle exercise-nav has-text-success', onClick: this.finishExercise }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-arrow-alt-circle-right exercise-nav', onClick: this.nextWord })
-                    ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-exchange-alt exercise-nav rotated', onClick: this.showTranslation })
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'exercise-answer' },
-                    this.state.answer
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
+                this.state.words ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.Fragment,
                     null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('progress', { className: 'progress is-primary', value: this.state.count,
-                        max: this.state.words.length - 1 })
-                )
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'exercise-fragment exercise-question' },
+                        this.state.words[this.state.count]
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'control exercise-fragment' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__ExerciseNavigation__["a" /* default */], { currentPosition: this.state.count,
+                            maxPosition: this.state.words.length - 1,
+                            beforeAnswer: this.state.beforeAnswer,
+                            showTranslation: this.showTranslation,
+                            cancelExercise: this.cancelExercise,
+                            finishExercise: this.finishExercise,
+                            nextWord: this.nextWord,
+                            prevWord: this.prevWord })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: answerClass.join(' ') },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'span',
+                            null,
+                            this.state.answer
+                        ),
+                        this.shouldRenderSaver() ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-save exercise-add-word has-text-primary',
+                            onClick: function onClick() {
+                                return _this3.saveWord();
+                            } }) : null
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'exercise-fragment' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Progress_Progress__["a" /* default */], { value: this.state.count, max: this.state.words.length - 1 })
+                    )
+                ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Loader_Loader__["default"], null)
             );
         }
     }]);
@@ -56930,13 +57090,13 @@ if (document.getElementById('exerciseComponent')) {
 /* harmony default export */ __webpack_exports__["default"] = (Exercise);
 
 /***/ }),
-/* 67 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(68);
+var content = __webpack_require__(76);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -56950,8 +57110,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./Exercise.css", function() {
-			var newContent = require("!!../../../../node_modules/css-loader/index.js!./Exercise.css");
+		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./Exercise.css", function() {
+			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./Exercise.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -56961,7 +57121,7 @@ if(false) {
 }
 
 /***/ }),
-/* 68 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(false);
@@ -56969,16 +57129,99 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, ".exercise-wrapper > div{\n    padding: 20px;\n    font-size: 2em;\n    text-align: center;\n}\n\n.rotated{\n    transform: rotate(90deg);\n}\n\n.exercise-nav{\n    cursor: pointer;\n    padding: 10px;\n}\n\n.exercise-nav:hover{\n    color: grey;\n}\n\n.fa-check-circle.exercise-nav:hover{\n    opacity: 0.6;\n}6\n\nprogress {\n    text-align: center;\n}\n\nprogress > span {\n    position: relative;\n    top: 0;\n}", ""]);
+exports.push([module.i, ".exercise-wrapper > div{\n    font-size: 2em;\n    text-align: center;\n}\n\n.exercise-fragment {\n    padding: 20px;\n}\n\n.exercise-answer {\n    display: flex;\n    justify-content: center;\n    align-items: flex-end;\n}\n\n.exercise-add-word {\n    margin-left: 1em;\n    font-size: 0.6em;\n    cursor: pointer;\n}\n\n.exercise-add-word:hover{\n    opacity: 0.7;\n}\n\n.with-margin-move {\n    margin-left: 1.6em;\n}\n\nprogress {\n    text-align: center;\n}", ""]);
 
 // exports
 
 
 /***/ }),
-/* 69 */
-/***/ (function(module, exports) {
+/* 77 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+var progress = function progress(props) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("progress", { className: "progress is-primary", value: props.value,
+        max: props.max });
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (progress);
+
+/***/ }),
+/* 78 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ExerciseNavigation_css__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ExerciseNavigation_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ExerciseNavigation_css__);
+
+
+
+var exerciseNavigation = function exerciseNavigation(props) {
+    if (props.beforeAnswer) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-exchange-alt exercise-nav rotated', onClick: props.showTranslation });
+    }
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.Fragment,
+        null,
+        props.currentPosition <= 0 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-times-circle exercise-nav has-text-danger',
+            onClick: props.cancelExercise }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-arrow-alt-circle-left exercise-nav', onClick: props.prevWord }),
+        props.currentPosition >= props.maxPosition ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-check-circle exercise-nav has-text-success',
+            onClick: props.finishExercise }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'far fa-arrow-alt-circle-right exercise-nav', onClick: props.nextWord })
+    );
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (exerciseNavigation);
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(80);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(6)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./ExerciseNavigation.css", function() {
+			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./ExerciseNavigation.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".rotated{\n    transform: rotate(90deg);\n}\n\n.exercise-nav{\n    cursor: pointer;\n    padding: 10px;\n}\n\n.exercise-nav:hover{\n    color: grey;\n}\n\n.fa-check-circle.exercise-nav, .fa-times-circle.exercise-nav:hover{\n    opacity: 0.6;\n}\n\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);
