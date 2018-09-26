@@ -22,4 +22,7 @@ Route::middleware('jwt.auth')->post('/auth/logout', 'API\AuthController@logout')
 Route::middleware('jwt.refresh')->get('auth/refresh', 'API\AuthController@refresh');
 Route::middleware('jwt.auth')->post('/auth/user', 'API\AuthController@user');
 
+Route::middleware('jwt.auth')->post('/words', 'API\WordsController@store');
+
+
 
