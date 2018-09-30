@@ -22,10 +22,3 @@ $factory->define(App\User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(App\Dictionary::class, function (Faker $faker){
-   return [
-       'name' => $faker->word,
-       'user_id' => $faker->randomNumber()
-   ];
-});
-

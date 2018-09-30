@@ -151,6 +151,8 @@ return [
          * Package Service Providers...
          */
 
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -211,6 +213,7 @@ return [
 
         'Word' => App\Word::class,
 
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
     ],
 
 ];
