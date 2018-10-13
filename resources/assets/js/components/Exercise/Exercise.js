@@ -4,6 +4,7 @@ import './Exercise.css';
 import ExerciseNavigation from './ExerciseNavigation';
 import Progress from '../../Progress/Progress';
 import Loader from '../../Loader/Loader';
+import axios from 'axios';
 
 class Exercise extends React.Component {
     constructor(props) {
@@ -18,6 +19,7 @@ class Exercise extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props.words);
         const words = JSON.parse(this.props.words).map((word) => {
             return word.body;
         });
