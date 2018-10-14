@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\CsvImporter;
+use App\User;
 use App\Word;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Rule;
+use MongoDB\Driver\Query;
 
 class WordsController extends Controller
 {
@@ -16,10 +18,16 @@ class WordsController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $wordsCount = Auth::user()->dictionary->words()->count();
-        $words = Auth::user()->dictionary->words()->simplePaginate(10);
+        $query = Auth::user()->dictionary->words();
+
+        if($request->has('phrase')){
+            $query = $query->where('body', 'like', '%' . $request->get('phrase') . '%');
+        }
+
+        $wordsCount = $query->count();
+        $words = $query->simplePaginate(10);
         return view('word.index', compact('words', 'wordsCount'));
     }
 
@@ -38,6 +46,14 @@ class WordsController extends Controller
     public function exists(Request $request)
     {
         return json_encode(Word::isInDictionary(Auth::user(), $request->input('word'), $request->input('lang')));
+    }
+
+    public function remove(Request $request)
+    {
+        $wordsIds = json_decode($request->get('ids'));
+        $user = Auth::user();
+        $user->dictionary->words()->detach($wordsIds);
+        return back();
     }
 
     public function import()
