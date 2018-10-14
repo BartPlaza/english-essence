@@ -11782,3 +11782,10 @@ ul.pagination-links > li {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.is-form-notification {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  padding: 1.25rem 2.5rem 1.25rem 1.5rem;
+  border-radius: 4px;
+}
+

@@ -7,8 +7,8 @@
                class="input {{ $errors->has($name) ? ' is-danger' : '' }}"
                value="{{ old($name) }}" required autofocus>
         @if ($errors->has($name))
-            <p class="help is danger" role="alert">
-                <strong>{{ $errors->first($name) }}</strong>
+            <p class="help" role="alert">
+                <strong class="has-text-danger">{{ $errors->first($name) }}</strong>
             </p>
         @endif
     </div>
