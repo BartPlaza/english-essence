@@ -1,6 +1,6 @@
 @extends('layout.main')
 @section('content')
-    <div class="main from-top" style="background-color: whitesmoke;">
+    <div class="main full-height" style="background-color: whitesmoke;">
         <div class="hero exercises-hero-background">
             <div class="hero-body">
                 <div class="container">

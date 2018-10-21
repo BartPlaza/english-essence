@@ -1,18 +1,17 @@
 @extends('layout.main')
 
 @section('content')
-    <div class="main from-top">
-        <section class="section">
-            <h1>Welcome! Select type of exercise</h1>
-            <div class="exercises">
-                <div class="exercise">
-                    <h3>10 random words</h3>
-                    <span>
-                <button class="button is-small is-dark">PL => EN</button>
-                <button class="button is-small is-dark">EN => PL</button>
-            </span>
+    <div class="main full-height" style="background-color: whitesmoke;">
+        <div class="hero welcome-page-hero">
+            <div class="hero-body">
+                <div class="container">
+                    <div class="columns is-centered">
+                        <div class="column is-10-desktop is-12-mobile">
+                            <h1>Learn English the way you want.</h1>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 @endsection
