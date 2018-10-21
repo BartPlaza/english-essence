@@ -12,10 +12,10 @@
     </div>
     <div id="navbar-menu" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item" href="/">Home</a>
-            <a class="navbar-item" href="/exercises">Exercises</a>
-            <a class="navbar-item" href="/words">Words overview</a>
-            <a class="navbar-item" href="import_csv">Import words</a>
+            <a class="navbar-item" href="/">{{__('navigation.home')}}</a>
+            <a class="navbar-item" href="/exercises">{{__('navigation.exercises')}}</a>
+            <a class="navbar-item" href="/words">{{__('navigation.words_overview')}}</a>
+            <a class="navbar-item" href="import_csv">{{__('navigation.import_words')}}</a>
         </div>
         <div class="navbar-end">
             @guest
@@ -32,6 +32,14 @@
                     @csrf
                 </form>
             @endguest
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button {{ App::getLocale() === 'en' ? 'is-lightblue' : 'is-light' }}"
+                       href="{{ route('language', ['language' => 'en']) }}">EN</a>
+                    <a class="button {{App::getLocale() === 'pl' ? 'is-lightblue' : 'is-light' }}"
+                       href="{{ route('language', ['language' => 'pl']) }}">PL</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

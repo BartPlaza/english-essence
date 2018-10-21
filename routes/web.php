@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/localization/{language}', 'LocalizationController@language')->name('language');
 Route::get('/exercises', 'ExercisesController@index');
 Route::post('/exercises/translate', 'ExercisesController@fetchWord');
 Route::post('/exercises/translateAll', 'ExercisesController@fetchAllWords');
