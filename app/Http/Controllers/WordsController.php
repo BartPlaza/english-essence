@@ -24,6 +24,7 @@ class WordsController extends Controller
 
     public function index(Request $request, WordService $wordService)
     {
+        $request->flash();
         $wordsCount = $wordService->count($request);
         $words = $wordService->paginate($request, 10);
         return view('word.index', compact('words', 'wordsCount'));

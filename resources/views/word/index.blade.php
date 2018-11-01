@@ -13,7 +13,7 @@
                         {{csrf_field()}}
                         <div class="field has-addons">
                             <div class="control is-expanded">
-                                <input name="phrase" class="input" type="text" placeholder="Find word">
+                                <input name="phrase" class="input" type="text" placeholder="Find word" value="{{ old('phrase') }}">
                             </div>
                             <div class="control">
                                 <button type="submit" class="button is-lightblue">
