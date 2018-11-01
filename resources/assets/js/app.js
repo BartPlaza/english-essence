@@ -13,7 +13,7 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./Modal/Modal');
+require('./components/Forms/AddWordForm');
 require('./Loader/Loader');
 require('./components/CsvImporter');
 require('./components/Exercise/Exercise');

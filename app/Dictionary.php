@@ -4,6 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Dictionary
+ * @property Word[] words
+ * @property User user
+ */
 class Dictionary extends Model
 {
     protected $fillable = [

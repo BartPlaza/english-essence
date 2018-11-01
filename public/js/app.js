@@ -516,7 +516,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(63);
+var	fixUrls = __webpack_require__(64);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -14584,7 +14584,7 @@ var _reactDom = __webpack_require__(4);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-__webpack_require__(64);
+__webpack_require__(65);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -14609,7 +14609,7 @@ exports.default = loader;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(23);
-module.exports = __webpack_require__(76);
+module.exports = __webpack_require__(77);
 
 
 /***/ }),
@@ -14635,8 +14635,8 @@ __webpack_require__(24);
 
 __webpack_require__(47);
 __webpack_require__(21);
-__webpack_require__(66);
-__webpack_require__(69);
+__webpack_require__(67);
+__webpack_require__(70);
 
 /***/ }),
 /* 24 */
@@ -36870,7 +36870,9 @@ var _reactDom = __webpack_require__(4);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-__webpack_require__(61);
+var _withModal = __webpack_require__(61);
+
+var _withModal2 = _interopRequireDefault(_withModal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36880,26 +36882,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Modal = function (_React$Component) {
-    _inherits(Modal, _React$Component);
+var AddWordForm = function (_React$Component) {
+    _inherits(AddWordForm, _React$Component);
 
-    function Modal(props) {
-        _classCallCheck(this, Modal);
+    function AddWordForm(props) {
+        _classCallCheck(this, AddWordForm);
 
-        var _this = _possibleConstructorReturn(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).call(this, props));
-
-        _this.closeModal = function () {
-            _this.setState({
-                active: false
-            });
-        };
-
-        _this.showModal = function () {
-            _this.setState({
-                active: true
-            });
-            _this.clearErrors();
-        };
+        var _this = _possibleConstructorReturn(this, (AddWordForm.__proto__ || Object.getPrototypeOf(AddWordForm)).call(this, props));
 
         _this.clearErrors = function () {
             _this.setState({
@@ -36911,16 +36900,16 @@ var Modal = function (_React$Component) {
         };
 
         _this.updateProperty = function (event) {
-            var properties = _extends({}, _this.state.properties);
+            var properties = _extends({}, _this.state.fields);
             properties[event.target.name] = event.target.value;
             _this.setState({
-                properties: properties
+                fields: properties
             });
         };
 
         _this.save = function () {
             _this.clearErrors();
-            axios.post('/words', _this.state.properties).then(function () {
+            axios.post('/words', _this.state.fields).then(function () {
                 location.reload();
             }).catch(function (error) {
                 _this.setState({
@@ -36930,8 +36919,7 @@ var Modal = function (_React$Component) {
         };
 
         _this.state = {
-            active: false,
-            properties: {
+            fields: {
                 body: null,
                 language: 'pl'
             },
@@ -36943,147 +36931,130 @@ var Modal = function (_React$Component) {
         return _this;
     }
 
-    _createClass(Modal, [{
+    _createClass(AddWordForm, [{
         key: 'render',
         value: function render() {
-            var modalClasses = ['modal'];
-            if (this.state.active) {
-                modalClasses.push('is-active');
-            }
-
             return _react2.default.createElement(
-                _react2.default.Fragment,
-                null,
-                _react2.default.createElement('i', { className: 'fas fa-plus open_modal_button', onClick: this.showModal }),
+                'div',
+                { className: 'box' },
                 _react2.default.createElement(
                     'div',
-                    { className: modalClasses.join(' ') },
-                    _react2.default.createElement('div', { className: 'modal-background' }),
+                    { className: 'field is-horizontal' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'modal-content' },
+                        { className: 'field-label is-normal' },
                         _react2.default.createElement(
-                            'div',
-                            { className: 'box' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'field is-horizontal' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'field-label is-normal' },
-                                    _react2.default.createElement(
-                                        'label',
-                                        { className: 'label', htmlFor: 'body' },
-                                        'Word'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'field-body' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'field' },
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'control' },
-                                            _react2.default.createElement('input', { className: 'input', id: 'body', type: 'text', name: 'body', tabIndex: '1',
-                                                placeholder: 'Enter word...', onChange: this.updateProperty }),
-                                            this.state.errors.body ? _react2.default.createElement(
-                                                'p',
-                                                { className: 'help is-danger', role: 'alert' },
-                                                _react2.default.createElement(
-                                                    'strong',
-                                                    null,
-                                                    this.state.errors.body[0]
-                                                )
-                                            ) : null
-                                        )
-                                    )
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'field is-horizontal' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'field-label is-normal' },
-                                    _react2.default.createElement(
-                                        'label',
-                                        { className: 'label' },
-                                        'Language'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'field-body' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'control' },
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'select is-fullwidth' },
-                                            _react2.default.createElement(
-                                                'select',
-                                                { tabIndex: '2', name: 'language', onChange: this.updateProperty,
-                                                    value: this.state.properties.language },
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    null,
-                                                    'pl'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    null,
-                                                    'en'
-                                                )
-                                            )
-                                        ),
-                                        this.state.errors.language ? _react2.default.createElement(
-                                            'p',
-                                            { className: 'help is-danger', role: 'alert' },
-                                            _react2.default.createElement(
-                                                'strong',
-                                                null,
-                                                this.state.errors.language[0]
-                                            )
-                                        ) : null
-                                    )
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'field is-grouped is-grouped-right' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'buttons' },
-                                    _react2.default.createElement(
-                                        'button',
-                                        { className: 'button is-lightblue', tabIndex: '3', onClick: this.save },
-                                        'Add word'
-                                    ),
-                                    _react2.default.createElement(
-                                        'button',
-                                        { className: 'button', tabIndex: '4', onClick: this.closeModal },
-                                        'Cancel'
-                                    )
-                                )
-                            )
+                            'label',
+                            { className: 'label', htmlFor: 'body' },
+                            'Word'
                         )
                     ),
-                    _react2.default.createElement('button', { className: 'modal-close is-large', 'aria-label': 'close', onClick: this.closeModal })
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'field-body' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'field' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'control' },
+                                _react2.default.createElement('input', { className: 'input', id: 'body', type: 'text', name: 'body', tabIndex: '1',
+                                    placeholder: 'Enter word...', onChange: this.updateProperty }),
+                                this.state.errors.body ? _react2.default.createElement(
+                                    'p',
+                                    { className: 'help is-danger', role: 'alert' },
+                                    _react2.default.createElement(
+                                        'strong',
+                                        null,
+                                        this.state.errors.body[0]
+                                    )
+                                ) : null
+                            )
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'field is-horizontal' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'field-label is-normal' },
+                        _react2.default.createElement(
+                            'label',
+                            { className: 'label' },
+                            'Language'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'field-body' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'control' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'select is-fullwidth' },
+                                _react2.default.createElement(
+                                    'select',
+                                    { tabIndex: '2', name: 'language', onChange: this.updateProperty,
+                                        value: this.state.fields.language },
+                                    _react2.default.createElement(
+                                        'option',
+                                        null,
+                                        'pl'
+                                    ),
+                                    _react2.default.createElement(
+                                        'option',
+                                        null,
+                                        'en'
+                                    )
+                                )
+                            ),
+                            this.state.errors.language ? _react2.default.createElement(
+                                'p',
+                                { className: 'help is-danger', role: 'alert' },
+                                _react2.default.createElement(
+                                    'strong',
+                                    null,
+                                    this.state.errors.language[0]
+                                )
+                            ) : null
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'field is-grouped is-grouped-right' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'buttons' },
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'button is-lightblue', tabIndex: '3', onClick: this.save },
+                            'Add word'
+                        ),
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'button', tabIndex: '4', onClick: this.props.closeModal },
+                            'Cancel'
+                        )
+                    )
                 )
             );
         }
     }]);
 
-    return Modal;
+    return AddWordForm;
 }(_react2.default.Component);
 
-if (document.getElementById('Modal')) {
-    _reactDom2.default.render(_react2.default.createElement(Modal, null), document.getElementById('Modal'));
+if (document.getElementById('AddWordForm')) {
+
+    var ModalAddWordForm = (0, _withModal2.default)(AddWordForm);
+
+    _reactDom2.default.render(_react2.default.createElement(ModalAddWordForm, null), document.getElementById('AddWordForm'));
 }
 
-exports.default = Modal;
+exports.default = AddWordForm;
 
 /***/ }),
 /* 48 */
@@ -56445,10 +56416,98 @@ module.exports = camelize;
 /* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+__webpack_require__(62);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var withModal = function withModal(Component) {
+    return function (_React$Component) {
+        _inherits(_class2, _React$Component);
+
+        function _class2(props) {
+            _classCallCheck(this, _class2);
+
+            var _this = _possibleConstructorReturn(this, (_class2.__proto__ || Object.getPrototypeOf(_class2)).call(this, props));
+
+            _this.closeModal = function () {
+                _this.setState({
+                    active: false
+                });
+            };
+
+            _this.showModal = function () {
+                _this.setState({
+                    active: true
+                });
+            };
+
+            _this.state = {
+                active: false
+            };
+            return _this;
+        }
+
+        _createClass(_class2, [{
+            key: 'render',
+            value: function render() {
+                var modalClasses = ['modal'];
+                if (this.state.active) {
+                    modalClasses.push('is-active');
+                }
+                return _react2.default.createElement(
+                    _react2.default.Fragment,
+                    null,
+                    _react2.default.createElement('i', { className: 'fas fa-plus open_modal_button', onClick: this.showModal }),
+                    _react2.default.createElement(
+                        'div',
+                        { className: modalClasses.join(' ') },
+                        _react2.default.createElement('div', { className: 'modal-background' }),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'modal-content' },
+                            _react2.default.createElement(Component, _extends({}, this.props, { closeModal: this.closeModal }))
+                        )
+                    ),
+                    this.state.active && _react2.default.createElement('button', { className: 'modal-close is-large', 'aria-label': 'close', onClick: this.closeModal })
+                );
+            }
+        }]);
+
+        return _class2;
+    }(_react2.default.Component);
+};
+
+exports.default = withModal;
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(62);
+var content = __webpack_require__(63);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -56462,8 +56521,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./Modal.css", function() {
-			var newContent = require("!!../../../../node_modules/css-loader/index.js!./Modal.css");
+		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./withModal.css", function() {
+			var newContent = require("!!../../../../node_modules/css-loader/index.js!./withModal.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -56473,7 +56532,7 @@ if(false) {
 }
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -56481,13 +56540,13 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, ".open_modal_button:hover{\n    cursor: pointer;\n    color: dimgrey;\n}\n\n.is-lightblue {\n    background-color: lightblue;\n}\n.modal-card-title {\n    margin: 0 !important;\n}", ""]);
+exports.push([module.i, ".open_modal_button:hover{\n    cursor: pointer;\n    color: dimgrey;\n}\n\n.is-lightblue {\n    background-color: lightblue;\n}\n.modal-card-title {\n    margin: 0 !important;\n}\n\n.modal-close {\n    z-index: 1000;\n}", ""]);
 
 // exports
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports) {
 
 
@@ -56582,13 +56641,13 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(65);
+var content = __webpack_require__(66);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -56613,7 +56672,7 @@ if(false) {
 }
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -56627,7 +56686,7 @@ exports.push([module.i, ".spinner {\n    display: flex;\n    width: 70px;\n    m
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56647,7 +56706,7 @@ var _reactDom = __webpack_require__(4);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _CsvImporter = __webpack_require__(67);
+var _CsvImporter = __webpack_require__(68);
 
 var _CsvImporter2 = _interopRequireDefault(_CsvImporter);
 
@@ -56846,13 +56905,13 @@ if (document.getElementById('CsvImporter')) {
 exports.default = CsvImporter;
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(68);
+var content = __webpack_require__(69);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -56877,7 +56936,7 @@ if(false) {
 }
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -56891,7 +56950,7 @@ exports.push([module.i, ".csv-file-check{\n    margin-left: 15px;\n    color: gr
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56911,13 +56970,13 @@ var _reactDom = __webpack_require__(4);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-__webpack_require__(70);
+__webpack_require__(71);
 
-var _ExerciseNavigation = __webpack_require__(72);
+var _ExerciseNavigation = __webpack_require__(73);
 
 var _ExerciseNavigation2 = _interopRequireDefault(_ExerciseNavigation);
 
-var _Progress = __webpack_require__(75);
+var _Progress = __webpack_require__(76);
 
 var _Progress2 = _interopRequireDefault(_Progress);
 
@@ -57125,13 +57184,13 @@ if (document.getElementById('exerciseComponent')) {
 exports.default = Exercise;
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(71);
+var content = __webpack_require__(72);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -57156,7 +57215,7 @@ if(false) {
 }
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -57170,7 +57229,7 @@ exports.push([module.i, ".exercise-wrapper > div{\n    font-size: 2em;\n    text
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57184,7 +57243,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(73);
+__webpack_require__(74);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -57205,13 +57264,13 @@ var exerciseNavigation = function exerciseNavigation(props) {
 exports.default = exerciseNavigation;
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(74);
+var content = __webpack_require__(75);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -57236,7 +57295,7 @@ if(false) {
 }
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);
@@ -57250,7 +57309,7 @@ exports.push([module.i, ".rotated{\n    transform: rotate(90deg);\n}\n\n.exercis
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57274,7 +57333,7 @@ var progress = function progress(props) {
 exports.default = progress;
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

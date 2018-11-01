@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\DictionaryService;
 use Illuminate\Support\ServiceProvider;
 use URL;
 
@@ -30,5 +31,9 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment() == 'production') {
             URL::forceScheme('https');
         }
+
+        $this->app->bind(DictionaryService::class, function(){
+            return new DictionaryService();
+        });
     }
 }

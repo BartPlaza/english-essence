@@ -9,3 +9,7 @@
 .modal-card-title {
     margin: 0 !important;
 }
+
+.modal-close {
+    z-index: 1000;
+}

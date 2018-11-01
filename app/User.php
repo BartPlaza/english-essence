@@ -6,6 +6,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Claims\Subject;
 
+/**
+ * Class User
+ * @property Dictionary dictionary
+ */
+
 class User extends Authenticatable
 {
     use Notifiable;

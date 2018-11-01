@@ -146,17 +146,17 @@ return array(
      |--------------------------------------------------------------------------
      |
      | There are some Laravel packages (such as Eloquence) that allow for accessing
-     | Eloquent model properties via camel case, instead of snake case.
+     | Eloquent model fields via camel case, instead of snake case.
      |
      | Enabling this option will support these packages by saving all model
-     | properties as camel case, instead of snake case.
+     | fields as camel case, instead of snake case.
      |
      | For example, normally you would see this:
      |
      |  * @property \Carbon\Carbon $created_at
      |  * @property \Carbon\Carbon $updated_at
      |
-     | With this enabled, the properties will be this:
+     | With this enabled, the fields will be this:
      |
      |  * @property \Carbon\Carbon $createdAt
      |  * @property \Carbon\Carbon $updatedAt

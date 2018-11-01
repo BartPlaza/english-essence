@@ -6,7 +6,7 @@
             <div class="panel" id="words-table">
                 <div class="panel-heading">
                     <span>All words: {{$wordsCount}}</span>
-                    <div id="Modal"></div>
+                    <div id="AddWordForm"></div>
                 </div>
                 <div class="panel-block">
                     <form action="/words" method="GET" class="is-full" style="width: 100%">

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\CsvImporter;
+use App\Dictionary;
+use App\Services\DictionaryService;
+use App\Services\WordService;
 use App\User;
 use App\Word;
+use App\Words;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -18,41 +22,33 @@ class WordsController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
+    public function index(Request $request, WordService $wordService)
     {
-        $query = Auth::user()->dictionary->words();
-
-        if($request->has('phrase')){
-            $query = $query->where('body', 'like', '%' . $request->get('phrase') . '%');
-        }
-
-        $wordsCount = $query->count();
-        $words = $query->simplePaginate(10);
+        $wordsCount = $wordService->count($request);
+        $words = $wordService->paginate($request, 10);
         return view('word.index', compact('words', 'wordsCount'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, WordService $wordService)
     {
         $request->validate([
             'body' => 'required',
             'language' => ['required', Rule::in(Word::LANGUAGES)]
         ]);
-
-        $word = Word::create(Input::all());
-        $user = Auth::user();
-        $user->dictionary->words()->attach($word->id);
+        $body = $request->get('body');
+        $language = $request->get('language');
+        $wordService->store($body, $language);
     }
 
-    public function exists(Request $request)
+    public function exists(Request $request, Words $wordsRepository)
     {
-        return json_encode(Word::isInDictionary(Auth::user(), $request->input('word'), $request->input('lang')));
+        return json_encode($wordsRepository->existsInDictionary($request->input('word'), $request->input('lang')));
     }
 
-    public function remove(Request $request)
+    public function remove(Request $request, DictionaryService $dictionaryService)
     {
-        $wordsIds = json_decode($request->get('ids'));
-        $user = Auth::user();
-        $user->dictionary->words()->detach($wordsIds);
+        $wordsIds = (array) json_decode($request->get('ids'));
+        $dictionaryService->removeWordsByIds($wordsIds);
         return back();
     }
 

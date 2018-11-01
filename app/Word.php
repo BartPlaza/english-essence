@@ -4,6 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Word
+ * @property  int id
+ * @property string body
+ * @property string $language
+ */
+
 class Word extends Model
 {
     const LANGUAGES = [
@@ -12,13 +19,13 @@ class Word extends Model
     ];
     protected $fillable = ['body', 'language'];
 
+    public static function findOrNull($body, $language)
+    {
+        return Word::where(['body' => $body, 'language' => $language])->first();
+    }
+
     public function dictionaries()
     {
         return $this->belongsToMany(Dictionary::class, 'dictionary_word');
-    }
-
-    public static function isInDictionary(User $user, string $word, string $language)
-    {
-        return $user->dictionary->words()->where(['body' => $word, 'language' => $language])->exists();
     }
 }
