@@ -6,7 +6,7 @@ use App\Scoping\BodyScope;
 use App\Scoping\Scoper;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Word
@@ -26,6 +26,17 @@ class Word extends Model
         'pl' => 'pl'
     ];
     protected $fillable = ['body', 'language'];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('forUser', function (Builder $builder){
+             $builder->whereHas('dictionaries', function ($query){
+                $query->where('user_id', '=', Auth::id());
+             });
+        });
+    }
 
     public static function findOrNull($body, $language)
     {

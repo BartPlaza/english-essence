@@ -24,14 +24,12 @@ class WordsController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request, WordService $wordService)
+    public function index(Request $request)
     {
         $request->flash();
         $query = Word::withScopes();
         $wordsCount = $query->count();
         $words = $query->simplePaginate(10);
-        //$wordsCount = $wordService->count($request);
-        //$words = $wordService->paginate($request, 10);
         return view('word.index', compact('words', 'wordsCount'));
     }
 
