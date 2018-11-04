@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property Word[] words
  * @property User user
- * @property-read \App\User $user
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Word[] $words
  * @mixin \Eloquent
  */
 class Dictionary extends Model
@@ -26,6 +24,6 @@ class Dictionary extends Model
 
     public function words()
     {
-        return $this->belongsToMany(Word::class, 'dictionary_word');
+        return $this->belongsToMany(Word::class, 'dictionary_word')->withoutGlobalScope('forUser');
     }
 }

@@ -12,12 +12,47 @@
                     <form action="/words" method="GET" class="is-full" style="width: 100%">
                         <div class="field has-addons">
                             <div class="control is-expanded">
-                                <input name="body" class="input" type="text" placeholder="Find word" value="{{ old('body') }}">
+                                <input name="body" class="input" type="text" placeholder="Find word"
+                                       value="{{ old('body', '') }}">
                             </div>
                             <div class="control">
                                 <button type="submit" class="button is-lightblue">
                                     Search
                                 </button>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <select name="language" class="input selection-list">
+                                            <option selected disabled value>Language filter</option>
+                                            @foreach($languages as $language)
+                                                <option value="{{$language}}" style="color: black"
+                                                        @if($language === old('language')) selected @endif>
+                                                    {{$language}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="control remove-filter-button">
+                                        <div class="button">
+                                            <i class="fas fa-times has-text-danger"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <select name="dictionary" class="input selection-list">
+                                            <option selected disabled value>Dictionary filter</option>
+                                        </select>
+                                    </div>
+                                    <div class="control remove-filter-button">
+                                        <div class="button">
+                                            <i class="fas fa-times has-text-danger"></i>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -38,7 +73,8 @@
                                     <div class="field">
                                         <div class="control">
                                             <label class="checkbox">
-                                                <input class="word-checkbox" type="checkbox" data-word-id="{{$word->id}}">
+                                                <input class="word-checkbox" type="checkbox"
+                                                       data-word-id="{{$word->id}}">
                                             </label>
                                         </div>
                                     </div>
@@ -81,6 +117,37 @@
     document.addEventListener('DOMContentLoaded', function () {
         const removeWordsIds = document.getElementById('remove-word-ids');
         const removeButton = document.getElementById('remove-word-button');
+        const selectLists = Array.from(document.getElementsByClassName('selection-list'));
+
+        selectLists.forEach(function (list) {
+            adjustFilterFormatting(list);
+            list.addEventListener('change', function () {
+                adjustFilterFormatting(list);
+            })
+        });
+
+        const removeFilterButtons = Array.from(document.getElementsByClassName('remove-filter-button'));
+
+        removeFilterButtons.forEach(function(button){
+           button.addEventListener('click', function(){
+               let selectList = button.previousElementSibling.firstElementChild;
+               selectList.value = '';
+               selectList.dispatchEvent(new Event('change'));
+           })
+        });
+
+        function adjustFilterFormatting(selectList) {
+            if(selectList.value === ''){
+                selectList.style.color = 'lightgray';
+                selectList.closest('div.field').classList.remove('has-addons');
+                selectList.parentNode.nextElementSibling.style.display = 'none';
+            } else {
+                selectList.style.color = 'black';
+                selectList.closest('div.field').classList.add('has-addons');
+                selectList.parentNode.nextElementSibling.style.display = 'block';
+            }
+        }
+
         document.getElementById('words-table-body').addEventListener('change', function (event) {
             if (event.target.type === 'checkbox') {
                 let selectedWords = checkSelectedWords();
@@ -94,7 +161,6 @@
             }
             console.log(removeWordsIds.value)
         });
-
 
         function checkSelectedWords() {
             return Array.from(document.getElementsByClassName('word-checkbox'))

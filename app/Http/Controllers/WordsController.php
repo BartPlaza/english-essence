@@ -30,7 +30,8 @@ class WordsController extends Controller
         $query = Word::withScopes();
         $wordsCount = $query->count();
         $words = $query->simplePaginate(10);
-        return view('word.index', compact('words', 'wordsCount'));
+        $languages = ['pl', 'en'];
+        return view('word.index', compact('words', 'wordsCount', 'languages'));
     }
 
     public function store(Request $request, WordService $wordService)

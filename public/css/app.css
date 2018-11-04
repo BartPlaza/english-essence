@@ -11705,6 +11705,10 @@ ul.pagination-links > li {
   display: none;
 }
 
+.remove-filter-button {
+  display: none;
+}
+
 .exercises-hero-background {
   background: linear-gradient(120deg, #0fb8ad 0%, #1fc8db 50%, #2cb5e8 75%);
 }
