@@ -11,13 +11,14 @@ use App\Http\Controllers\Controller;
 
 class WordsController extends Controller
 {
-    public function store(Request $request, Words $wordsRepository, DictionaryService $dictionaryService)
+    public function store(Request $request)
     {
         $user = User::find(auth()->user()->id);
+        $dictionaryService = new DictionaryService($user->dictionary);
         $body = $request->input('body');
         $language = $request->input('language');
 
-        if($wordsRepository->existsInDictionary($body, $language, $user->dictionary)){
+        if($dictionaryService->wordExists($body, $language)){
             return response()->json(['code' => 200, 'message' => 'This word already exists']);
         }
 

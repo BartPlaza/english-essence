@@ -57008,8 +57008,8 @@ var Exercise = function (_React$Component) {
             translations.forEach(function (translation, index) {
                 console.log(translation);
                 _axios2.default.post('/words/exists', {
-                    word: translation.word,
-                    lang: _this.props.to
+                    body: translation.word,
+                    language: _this.props.to
                 }).then(function (response) {
                     translation.inDictionary = response.data;
                     var copyTranslations = _this.state.translations;

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\CsvImporter;
 use App\Dictionary;
+use App\Scoping\BodyScope;
+use App\Scoping\Scoper;
 use App\Services\DictionaryService;
 use App\Services\WordService;
 use App\User;
@@ -25,8 +27,11 @@ class WordsController extends Controller
     public function index(Request $request, WordService $wordService)
     {
         $request->flash();
-        $wordsCount = $wordService->count($request);
-        $words = $wordService->paginate($request, 10);
+        $query = Word::withScopes();
+        $wordsCount = $query->count();
+        $words = $query->simplePaginate(10);
+        //$wordsCount = $wordService->count($request);
+        //$words = $wordService->paginate($request, 10);
         return view('word.index', compact('words', 'wordsCount'));
     }
 
@@ -41,15 +46,21 @@ class WordsController extends Controller
         $wordService->store($body, $language);
     }
 
-    public function exists(Request $request, Words $wordsRepository)
+    public function exists(Request $request, DictionaryService $dictionaryService)
     {
-        return json_encode($wordsRepository->existsInDictionary($request->input('word'), $request->input('lang')));
+        $request->validate([
+            'body' => 'required',
+            'language' => ['required', Rule::in(Word::LANGUAGES)]
+        ]);
+        $body = $request->get('body');
+        $language = $request->get('language');
+        return json_encode($dictionaryService->WordExists($body, $language));
     }
 
-    public function remove(Request $request, DictionaryService $dictionaryService)
+    public function remove(Request $request, WordService $wordService)
     {
         $wordsIds = (array) json_decode($request->get('ids'));
-        $dictionaryService->removeWordsByIds($wordsIds);
+        $wordService->remove($wordsIds);
         return back();
     }
 

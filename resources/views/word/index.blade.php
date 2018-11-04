@@ -10,10 +10,9 @@
                 </div>
                 <div class="panel-block">
                     <form action="/words" method="GET" class="is-full" style="width: 100%">
-                        {{csrf_field()}}
                         <div class="field has-addons">
                             <div class="control is-expanded">
-                                <input name="phrase" class="input" type="text" placeholder="Find word" value="{{ old('phrase') }}">
+                                <input name="body" class="input" type="text" placeholder="Find word" value="{{ old('body') }}">
                             </div>
                             <div class="control">
                                 <button type="submit" class="button is-lightblue">

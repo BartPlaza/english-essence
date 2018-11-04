@@ -8,7 +8,11 @@ use Tymon\JWTAuth\Claims\Subject;
 
 /**
  * Class User
+ *
  * @property Dictionary dictionary
+ * @property-read \App\Dictionary $dictionary
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @mixin \Eloquent
  */
 
 class User extends Authenticatable

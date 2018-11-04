@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Scoping\Scoper;
 use App\Services\DictionaryService;
 use Illuminate\Support\ServiceProvider;
 use URL;

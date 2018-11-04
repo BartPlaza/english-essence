@@ -51,4 +51,9 @@ class WordService
         $query = $this->prepareQuery($request);
         return $query->simplePaginate($items);
     }
+
+    public function remove(array $wordsIds): void
+    {
+        $this->dictionaryService->removeWordsByIds($wordsIds);
+    }
 }

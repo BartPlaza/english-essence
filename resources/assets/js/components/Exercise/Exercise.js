@@ -50,8 +50,8 @@ class Exercise extends React.Component {
         translations.forEach((translation, index) => {
             console.log(translation);
             axios.post('/words/exists', {
-                word: translation.word,
-                lang: this.props.to
+                body: translation.word,
+                language: this.props.to
             })
                 .then((response) => {
                     translation.inDictionary = response.data;

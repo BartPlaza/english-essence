@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Dictionary;
+use App\Services\DictionaryService;
+use App\Services\WordService;
 use Auth;
 use Exception;
 use Illuminate\Http\Request;
@@ -30,12 +32,12 @@ class ExercisesController extends Controller
         return view('exercises.index', compact('notification'));
     }
 
-    public function tenRandomWords(Request $request)
+    public function tenRandomWords(Request $request, DictionaryService $dictionaryService)
     {
         try {
             $fromLanguage = $request->input('from');
             $toLanguage = $request->input('to');
-            $words = Auth::user()->dictionary->words()->where('language', $fromLanguage)->get()->random(10);
+            $words = $dictionaryService->getRandomWords($fromLanguage, 10);
             return view('exercises.ten_random_words', compact('words','fromLanguage', 'toLanguage'));
         } catch (Exception $e) {
             $notification = ['message' => $e->getMessage(), 'class' => 'is-warning'];
