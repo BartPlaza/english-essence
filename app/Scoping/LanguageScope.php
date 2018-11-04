@@ -5,10 +5,10 @@ namespace App\Scoping;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class BodyScope implements Scope
+class LanguageScope implements Scope
 {
     public function apply(Builder $builder, $value): void
     {
-        $builder->where('body', 'like', '%' . $value . '%');
+        $builder->where('language', '=', $value);
     }
 }

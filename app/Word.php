@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Scoping\BodyScope;
+use App\Scoping\LanguageScope;
 use App\Scoping\Scoper;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -57,7 +58,8 @@ class Word extends Model
     private static function getScopes(): array
     {
         return [
-            'body' => new BodyScope()
+            'body' => new BodyScope(),
+            'language' => new LanguageScope()
         ];
     }
 }
